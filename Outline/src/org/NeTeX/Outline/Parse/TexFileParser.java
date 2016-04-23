@@ -11,8 +11,6 @@ package org.NeTeX.Outline.Parse;
  */
 
 import java.io.*;
-import org.NeTeX.Outline.Window.ElementNodeFactory;
-import org.NeTeX.Outline.Window.ElementNode;
 
 public class TexFileParser {
     private TexFile doc;

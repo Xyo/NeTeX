@@ -9,8 +9,6 @@ package org.NeTeX.Outline.Parse;
  * Created by Jeremy on 4/18/16.
  */
 
-import org.NeTeX.Outline.Window.ElementNode;
-
 public class ParserUtilities {
 
     public static boolean partFound( String line ){
