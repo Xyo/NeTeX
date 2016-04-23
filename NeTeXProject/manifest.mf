@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+AutoUpdate-Show-In-Client: true
+OpenIDE-Module: org.NeTex.NeTeXProject
+OpenIDE-Module-Localizing-Bundle: org/NeTex/NeTeXProject/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
