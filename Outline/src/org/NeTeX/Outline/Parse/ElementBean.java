@@ -4,42 +4,41 @@
  * and open the template in the editor.
  */
 package org.NeTeX.Outline.Parse;
-
 /**
  *
  * @author Jeremy
  */
 public class ElementBean {
-    
     public enum ElementType{
-    SECTION, SUBSECTION, SUBSUBSECTION, PARAGRAPH, SUBPARAGRAPH
+        PART, CHAPTER, SECTION, SUBSECTION, SUBSUBSECTION, PARAGRAPH, 
+        SUBPARAGRAPH, DESCRIPTION, FIGURE, LIST, TABLE
     }
     
-    private String type;
+    private ElementType type;
     private String name;
     private Integer start;
     private Integer end;
-    private boolean complete;
-    private ElementType type;
+    private boolean complete = false;
     
-    ElementBean(String name, ElementType type, int start ){
-        this.name = name;
+    
+    ElementBean(ElementType type, String name, int start, boolean complete ) {
+        this.type = type;
         this.name = name;
         this.start = (Integer)start;
-        this.type = type;
-    }    
-    
-    
-    @Override
-    public int compareTo(Object seg) {
-        return this.start.compareTo( (((ElementBean)seg).getStart()) );
+        this.complete = complete;
     }
+    
+    
+//    @Override
+//    public int compareTo(Object seg) {
+//        return this.start.compareTo( (((ElementNode)seg).getStart()) );
+//    }
     
     @Override
     public boolean equals(Object seg) {
-        if( seg == null || !(seg instanceof ElementBean) ) return false;
+        if( seg == null || !(seg instanceof ElementNode) ) return false;
         
-        return this.start == ((ElementBean)seg).getStart();
+        return this.start == ((ElementNode)seg).getStart();
     }
 
     @Override
@@ -59,11 +58,11 @@ public class ElementBean {
     }
     
     
-    public String getType() {
+    public ElementType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ElementType type) {
         this.type = type;
     }
 
@@ -82,6 +81,6 @@ public class ElementBean {
     public void setEnd(int end) {
         this.end = end;
     }
-    
-    
 }
+
+

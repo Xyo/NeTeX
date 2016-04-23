@@ -7,6 +7,7 @@ package Window;
 
 import javax.swing.ActionMap;
 import org.netbeans.api.settings.ConvertAsProperties;
+import org.netbeans.modules.editor.NbEditorKit.NbGenerateGoToPopupAction;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
@@ -14,6 +15,8 @@ import org.openide.explorer.ExplorerUtils;
 import org.openide.util.Lookup;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
+import org.openide.actions.GotoAction;
+import org.netbeans.editor.ext.GotoDialogSupport;
 
 /**
  * Top component which displays something.
@@ -57,7 +60,6 @@ public final class OutlineWindowTopComponent extends TopComponent
         setName(Bundle.CTL_OutlineWindowTopComponent());
         setToolTipText(Bundle.HINT_OutlineWindowTopComponent());
         ActionMap map = this.getActionMap();
-        map.put("goto", org.openide.actions.GotoAction);
         associateLookup (ExplorerUtils.createLookup (manager, map));
     }
 
