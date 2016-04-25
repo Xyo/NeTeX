@@ -8,6 +8,9 @@ package org.NeTeX.Outline;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
+import org.openide.explorer.ExplorerManager;
+import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Children;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 
@@ -35,13 +38,14 @@ import org.openide.util.NbBundle.Messages;
     "CTL_OutlineTopComponent=Outline Window",
     "HINT_OutlineTopComponent=This is a Outline window"
 })
-public final class OutlineTopComponent extends TopComponent {
-
+public final class OutlineTopComponent extends TopComponent implements ExplorerManager.Provider {
+    private final ExplorerManager manager = new ExplorerManager();
+    
     public OutlineTopComponent() {
         initComponents();
         setName(Bundle.CTL_OutlineTopComponent());
         setToolTipText(Bundle.HINT_OutlineTopComponent());
-
+        manager.setRootContext( new AbstractNode(Children.create(new ElementEventChildFactory(), true)) );
     }
 
     /**
@@ -86,5 +90,9 @@ public final class OutlineTopComponent extends TopComponent {
     void readProperties(java.util.Properties p) {
         String version = p.getProperty("version");
         // TODO read your settings according to their version
+    }
+    
+    public ExplorerManager getExplorerManager(){
+        return this.manager;
     }
 }

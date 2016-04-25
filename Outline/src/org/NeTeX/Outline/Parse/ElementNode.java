@@ -4,13 +4,22 @@
  * and open the template in the editor.
  */
 package org.NeTeX.Outline.Parse;
+import javax.swing.tree.DefaultMutableTreeNode;
 import org.NeTeX.Outline.Parse.ElementBean;
 /**
  *
  * @author Jeremy
  */
-public class ElementNode {
+public class ElementNode extends DefaultMutableTreeNode {
+    private ElementBean element;
     
+    ElementNode(ElementBean bean){
+        this.element = bean;
+    }
+    
+    public String getDescription(){
+        return this.element.toString();
+    }
 }
 
 

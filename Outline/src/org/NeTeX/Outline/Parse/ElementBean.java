@@ -8,7 +8,7 @@ package org.NeTeX.Outline.Parse;
  *
  * @author Jeremy
  */
-public class ElementBean {
+public class ElementBean implements Comparable {
     public enum ElementType{
         PART, CHAPTER, SECTION, SUBSECTION, SUBSUBSECTION, PARAGRAPH, 
         SUBPARAGRAPH, DESCRIPTION, FIGURE, LIST, TABLE
@@ -29,16 +29,17 @@ public class ElementBean {
     }
     
     
-//    @Override
-//    public int compareTo(Object seg) {
-//        return this.start.compareTo( (((ElementNode)seg).getStart()) );
-//    }
+    @Override
+    public int compareTo(Object other) {
+        if( !(other instanceof ElementBean) ) return 0;
+        return this.start.compareTo( ((ElementBean)other).getStart() );
+    }
     
     @Override
     public boolean equals(Object seg) {
         if( seg == null || !(seg instanceof ElementNode) ) return false;
         
-        return this.start == ((ElementNode)seg).getStart();
+        return this.start == ((ElementBean)seg).getStart();
     }
 
     @Override

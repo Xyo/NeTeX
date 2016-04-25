@@ -58,35 +58,42 @@ public class ParserUtilities {
     }
 
     public static String parseName(String line){
+        
         int start = line.indexOf("{") + 1;
-        int end = line.indexOf("}") + 1;
-
+        int end = line.indexOf("}") - 1;
+        return line.substring( start, end );
+    }
+    
+    public static String parseType(String line) throws IllegalArgumentException {
+        if( beginFound(line) ) throw new IllegalArgumentException(line + "is not a type");
+        int start = line.indexOf("/") + 1;
+        int end = line.indexOf("{") - 1;
         return line.substring( start, end );
     }
 
-    public static ElementNode.ElementType getEnumValue(String value){
+    public static ElementBean.ElementType getEnumValue(String value){
         String type = value.toUpperCase();
         switch(type){
             case("PART"):
-                return ElementNode.ElementType.PART;
+                return ElementBean.ElementType.PART;
             case("CHAPTER"):
-                return ElementNode.ElementType.CHAPTER;
+                return ElementBean.ElementType.CHAPTER;
             case("SECTION"):
-                return ElementNode.ElementType.SECTION;
+                return ElementBean.ElementType.SECTION;
             case("SUBSECTION"):
-                return ElementNode.ElementType.SUBSECTION;
+                return ElementBean.ElementType.SUBSECTION;
             case("SUBSUBSECTION"):
-                return ElementNode.ElementType.SUBSUBSECTION;
+                return ElementBean.ElementType.SUBSUBSECTION;
             case("PARAGRAPH"):
-                return ElementNode.ElementType.PARAGRAPH;
+                return ElementBean.ElementType.PARAGRAPH;
             case("SUBPARAGRAPH"):
-                return ElementNode.ElementType.SUBPARAGRAPH;
+                return ElementBean.ElementType.SUBPARAGRAPH;
             case("FIGURE"):
-                return ElementNode.ElementType.FIGURE;
+                return ElementBean.ElementType.FIGURE;
             case("LIST"):
-                return ElementNode.ElementType.LIST;
+                return ElementBean.ElementType.LIST;
             case("TABLE"):
-                return ElementNode.ElementType.TABLE;
+                return ElementBean.ElementType.TABLE;
             
                 
         }

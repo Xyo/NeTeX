@@ -14,12 +14,11 @@ import java.io.*;
 
 public class TexFileParser {
     private TexFile doc;
-    private TexTree tree;
     private BufferedReader br;
     private int lineCounter = 0;
 
     TexFileParser( TexFile doc ) throws FileNotFoundException {
-        if( doc == null ) throw new FileNotFoundException( "TexFile not created yet" );
+        if( doc == null ) throw new FileNotFoundException( "The file " + doc.getFilePath() + " is missing" );
         this.doc = doc;
     }
     
@@ -37,18 +36,16 @@ public class TexFileParser {
                 new BufferedReader(new FileReader(doc.getFilePath()))   ){
 
             String documentClass = getDocClass(br);
-            tree = new TexTree(documentClass);
 
             // todo: get ending line now, or set ending line when next section is added to tree?
             // check if the line contains an important element
+            String line = nextLine(br);
             if( ParserUtilities.partFound(line) ){
                 String name = ParserUtilities.parseName(line);
                 
 
                 if( ParserUtilities.isStartingElement(line) ){
-                    tree.addNewSection(seg);
                 }else if( ParserUtilities.isEndingElement(line) ){
-                    tree.addToChild(seg);
                 }
             }
         }catch( IOException e ){}  
