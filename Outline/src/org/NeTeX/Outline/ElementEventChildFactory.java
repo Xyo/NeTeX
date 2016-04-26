@@ -21,7 +21,7 @@ public class ElementEventChildFactory extends ChildFactory<Event> {
 
     @Override
     protected boolean createKeys(List<Event> list) {
-        
+        return false;
     }
     
     @Override

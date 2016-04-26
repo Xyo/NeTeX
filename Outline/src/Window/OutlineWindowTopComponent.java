@@ -16,7 +16,6 @@ import org.openide.util.Lookup;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.openide.actions.GotoAction;
-import org.netbeans.editor.ext.GotoDialogSupport;
 
 /**
  * Top component which displays something.
@@ -27,7 +26,7 @@ import org.netbeans.editor.ext.GotoDialogSupport;
 )
 @TopComponent.Description(
         preferredID = "OutlineWindowTopComponent",
-        iconBase = "Window/outlineIcon.png",
+        //iconBase = "Window/outlineIcon.png",
         persistenceType = TopComponent.PERSISTENCE_ALWAYS
 )
 @TopComponent.Registration(mode = "output", openAtStartup = true)
