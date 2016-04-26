@@ -42,7 +42,6 @@ public class TexFileParser {
             String line = nextLine(br);
             if( ParserUtilities.partFound(line) ){
                 String name = ParserUtilities.parseName(line);
-                
 
                 if( ParserUtilities.isStartingElement(line) ){
                 }else if( ParserUtilities.isEndingElement(line) ){

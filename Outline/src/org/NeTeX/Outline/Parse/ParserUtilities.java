@@ -65,9 +65,13 @@ public class ParserUtilities {
     }
     
     public static String parseType(String line) throws IllegalArgumentException {
-        if( beginFound(line) ) throw new IllegalArgumentException(line + "is not a type");
-        int start = line.indexOf("/") + 1;
-        int end = line.indexOf("{") - 1;
+        if( beginFound(line) ) return parseName(line);
+        int start = line.indexOf("\\") + 1;
+        
+        int end = 0;
+        if( line.contains("{") ){
+            end = line.indexOf("}") - 1;
+        }
         return line.substring( start, end );
     }
 
@@ -94,8 +98,6 @@ public class ParserUtilities {
                 return ElementBean.ElementType.LIST;
             case("TABLE"):
                 return ElementBean.ElementType.TABLE;
-            
-                
         }
         throw new IllegalArgumentException(value + " is not a supported type");
     }

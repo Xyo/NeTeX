@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.rules.ExpectedException;
 
 /**
  *
@@ -27,6 +28,9 @@ public class ParserUtilitiesTest {
         testParseName();
     }
     
+    public static void main(String[] args){
+        ParserUtilitiesTest test = new ParserUtilitiesTest();
+    }
    
     @Test
     public void testPartFound() {
@@ -100,12 +104,13 @@ public class ParserUtilitiesTest {
     @Test
     public void testParseType() {
         System.out.println("parseType");
-        String line = "";
-        String expResult = "";
+        String line = "\\chapter{Titlehere}";
         String result = ParserUtilities.parseType(line);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(result, "chapter");
+        
+        String line2 = "\\begin{chapter}";
+        String result2 = ParserUtilities.parseType(line);
+        assertEquals(result2, ParserUtilities.parseName(line));
     }
 
     /**
@@ -114,12 +119,13 @@ public class ParserUtilitiesTest {
     @Test
     public void testGetEnumValue() {
         System.out.println("getEnumValue");
-        String value = "";
-        ElementBean.ElementType expResult = null;
+        String value = "part";
         ElementBean.ElementType result = ParserUtilities.getEnumValue(value);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(result, ElementBean.ElementType.PART);
+        
+        String value2 = "butt";
+        ElementBean.ElementType result2 = ParserUtilities.getEnumValue(value2);
+        exception.expect(IllegalArgumentException.class);
     }
-    
+    public final ExpectedException exception = ExpectedException.none();
 }
