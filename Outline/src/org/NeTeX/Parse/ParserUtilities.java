@@ -95,10 +95,11 @@ public class ParserUtilities {
     }
     
     public static String[] parseElementsFromLine(String line){
-        while(true){
-            int index = line.indexOf("//");
-                    
-        }
+        int index = line.indexOf("//");
+        String newElem = line.substring(index+1);
+        int nextIndex = line.indexOf("//");
+
+        
     }
 
     public static ElementBean.ElementType getEnumValue(String value){
