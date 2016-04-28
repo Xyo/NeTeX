@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.NeTeX.Outline;
+package org.NeTeX.Window;
 
+import javax.swing.ActionMap;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
+import org.openide.explorer.ExplorerUtils;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.windows.TopComponent;
@@ -46,6 +48,8 @@ public final class OutlineTopComponent extends TopComponent implements ExplorerM
         setName(Bundle.CTL_OutlineTopComponent());
         setToolTipText(Bundle.HINT_OutlineTopComponent());
         manager.setRootContext( new AbstractNode(Children.create(new ElementEventChildFactory(), true)) );
+        ActionMap map = this.getActionMap();
+        associateLookup (ExplorerUtils.createLookup (manager, map));
     }
 
     /**
@@ -94,5 +98,14 @@ public final class OutlineTopComponent extends TopComponent implements ExplorerM
     
     public ExplorerManager getExplorerManager(){
         return this.manager;
+    }
+    
+    // switch all listeners on when component is shown
+    protected void componentActivated() {
+        ExplorerUtils.activateActions(manager, true);
+    }
+    // switch all listeners off when component is hidden
+    protected void componentDeactivated() {
+        ExplorerUtils.activateActions(manager, false);
     }
 }
